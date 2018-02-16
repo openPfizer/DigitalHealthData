@@ -1,0 +1,552 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Read Apple Watch Data &mdash; Apple Watch Data 0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Apple Watch Data 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Welcome to Apple Watch Data’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Apple Watch Data
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Read Apple Watch Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-AppleWatchLib.plot_apple_watch_data">Plot Apple Watch Data</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Apple Watch Data</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Read Apple Watch Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/AppleWatch.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-AppleWatchLib.read_apple_watch_data">
+<span id="read-apple-watch-data"></span><h1>Read Apple Watch Data<a class="headerlink" href="#module-AppleWatchLib.read_apple_watch_data" title="Permalink to this headline">¶</a></h1>
+<p>Extracting Apple Watch Health Data</p>
+<dl class="class">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData">
+<em class="property">class </em><code class="descclassname">AppleWatchLib.read_apple_watch_data.</code><code class="descname">AppleWatchData</code><span class="sig-paren">(</span><em>xml_data_file_path</em>, <em>source_name</em>, <em>tag_name='Record'</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Object to contain all relevant data access calls for Apple Watch health data.</p>
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.load_basal_energy_data">
+<code class="descname">load_basal_energy_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.load_basal_energy_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">data frame of basal kilocalories burned and respective timestamps</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.load_distance_data">
+<code class="descname">load_distance_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.load_distance_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">data frame of miles walked/ran and respective timestamps</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.load_heart_rate_data">
+<code class="descname">load_heart_rate_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.load_heart_rate_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">data frame of instantaneous beats per minute and respective time stamps</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.load_heart_rate_variability_data">
+<code class="descname">load_heart_rate_variability_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.load_heart_rate_variability_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">data frame of average standard deviation of NN (beat-to-beat) intervals and
+instantaneous heart rate measures (BPM) used to derive this estimate</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.load_resting_heart_rate_data">
+<code class="descname">load_resting_heart_rate_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.load_resting_heart_rate_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">data frame of average resting heart rate (BPM) per diem</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.load_stand_hour_data">
+<code class="descname">load_stand_hour_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.load_stand_hour_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">data frame of stand hour labels (i.e. stood vs idle) per hour</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.load_step_data">
+<code class="descname">load_step_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.load_step_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">data frame of step data and respective timestamps</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.load_walking_heart_rate_data">
+<code class="descname">load_walking_heart_rate_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.load_walking_heart_rate_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">data frame of average walking heart rate (BPM) per diem</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.parse_record">
+<code class="descname">parse_record</code><span class="sig-paren">(</span><em>record</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.parse_record" title="Permalink to this definition">¶</a></dt>
+<dd><p>For a given record pull and start timestamp, end timestamp, and health data value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>record</strong> – xml object with tag name of Record</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Record’s start timestamp, end timestamp, and biometric data</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.parse_record_list">
+<code class="descname">parse_record_list</code><span class="sig-paren">(</span><em>record_list</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.parse_record_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate array of timestamps and data values returned by multiple records.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>record_list</strong> – list of xml objects with tag name Record</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">array of timestamps and data values returned by parse_record()</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="AppleWatchLib.read_apple_watch_data.AppleWatchData.parse_tag">
+<code class="descname">parse_tag</code><span class="sig-paren">(</span><em>attribute</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.read_apple_watch_data.AppleWatchData.parse_tag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter for records in Health Data matching attribute name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>attribute</strong> – attribute name of xml Record tag</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of all records matching class’s source name and attribute name</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-AppleWatchLib.plot_apple_watch_data">
+<span id="plot-apple-watch-data"></span><h1>Plot Apple Watch Data<a class="headerlink" href="#module-AppleWatchLib.plot_apple_watch_data" title="Permalink to this headline">¶</a></h1>
+<p>Visualizing Apple Watch Health Data w/ Bokeh</p>
+<dl class="function">
+<dt id="AppleWatchLib.plot_apple_watch_data.plot_basal_energy">
+<code class="descclassname">AppleWatchLib.plot_apple_watch_data.</code><code class="descname">plot_basal_energy</code><span class="sig-paren">(</span><em>apple_watch</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.plot_apple_watch_data.plot_basal_energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate grid heat map of basal Calories burned for a given hour and date, grouped by start timestamp.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>apple_watch</strong> – instance of apple watch data object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="AppleWatchLib.plot_apple_watch_data.plot_distance">
+<code class="descclassname">AppleWatchLib.plot_apple_watch_data.</code><code class="descname">plot_distance</code><span class="sig-paren">(</span><em>apple_watch</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.plot_apple_watch_data.plot_distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate grid heat map of miles walked or ran for a given hour and date, grouped by start timestamp.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>apple_watch</strong> – instance of apple watch data object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="AppleWatchLib.plot_apple_watch_data.plot_heart_rate">
+<code class="descclassname">AppleWatchLib.plot_apple_watch_data.</code><code class="descname">plot_heart_rate</code><span class="sig-paren">(</span><em>apple_watch</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.plot_apple_watch_data.plot_heart_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Superpostion multiple time series plots of heart data</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>apple_watch</strong> – data frame of heart rate data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="AppleWatchLib.plot_apple_watch_data.plot_heart_rate_variability">
+<code class="descclassname">AppleWatchLib.plot_apple_watch_data.</code><code class="descname">plot_heart_rate_variability</code><span class="sig-paren">(</span><em>apple_watch</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.plot_apple_watch_data.plot_heart_rate_variability" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate swarm-like plots of heart rate variability measures for multiple days</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>apple_watch</strong> – data frame of heart rate variability data</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="AppleWatchLib.plot_apple_watch_data.plot_resting_heart_rate">
+<code class="descclassname">AppleWatchLib.plot_apple_watch_data.</code><code class="descname">plot_resting_heart_rate</code><span class="sig-paren">(</span><em>apple_watch</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.plot_apple_watch_data.plot_resting_heart_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate simple time series plot of resting heart rate</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>apple_watch</strong> – data frame of daily resting heart rate estimates</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="AppleWatchLib.plot_apple_watch_data.plot_stand_hour">
+<code class="descclassname">AppleWatchLib.plot_apple_watch_data.</code><code class="descname">plot_stand_hour</code><span class="sig-paren">(</span><em>apple_watch</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.plot_apple_watch_data.plot_stand_hour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate grid heat map of stand hour labels for a given hour and date, grouped by start timestamp.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>apple_watch</strong> – instance of apple watch data object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="AppleWatchLib.plot_apple_watch_data.plot_steps">
+<code class="descclassname">AppleWatchLib.plot_apple_watch_data.</code><code class="descname">plot_steps</code><span class="sig-paren">(</span><em>apple_watch</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.plot_apple_watch_data.plot_steps" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate grid heat map of step counts for a given hour and date, grouped by start timestamp.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>apple_watch</strong> – instance of apple watch data object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="AppleWatchLib.plot_apple_watch_data.plot_walking_heart_rate">
+<code class="descclassname">AppleWatchLib.plot_apple_watch_data.</code><code class="descname">plot_walking_heart_rate</code><span class="sig-paren">(</span><em>apple_watch</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.plot_apple_watch_data.plot_walking_heart_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate simple time series plot of walking heart rate</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>apple_watch</strong> – data frame of daily walking heart rate estimates</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="AppleWatchLib.plot_apple_watch_data.run">
+<code class="descclassname">AppleWatchLib.plot_apple_watch_data.</code><code class="descname">run</code><span class="sig-paren">(</span><em>apple_watch</em>, <em>start_date</em>, <em>end_date</em>, <em>show_plots</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.plot_apple_watch_data.run" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="AppleWatchLib.plot_apple_watch_data.save_plot">
+<code class="descclassname">AppleWatchLib.plot_apple_watch_data.</code><code class="descname">save_plot</code><span class="sig-paren">(</span><em>plot</em>, <em>title</em><span class="sig-paren">)</span><a class="headerlink" href="#AppleWatchLib.plot_apple_watch_data.save_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves plot in local directory as file_name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>plot</strong> – bokeh plot object</li>
+<li><strong>title</strong> – file name for plot</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to Apple Watch Data’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Pfizer Innovation Research Lab.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

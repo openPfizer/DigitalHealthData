@@ -1,0 +1,6 @@
+bokeh==0.12.13
+matplotlib==2.1.0
+numpy==1.14.0
+scipy==0.19.1
+Sphinx==1.6.3
+sphinx-rtd-theme==0.2.4

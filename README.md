@@ -29,6 +29,9 @@ python run.py -xml_file_path export.xml -start_date 2012-12-10 -end_date 2012-12
 
 When providing the source name (same as apple watch name listed in Watch app), be mindful of special, non-ascii code characters such as apostraphes. Apple Watch name can be changed from within the Watch app.
 
+## Documentation
+Visit [here](https://openpfizer.github.io/DigitalHealthData/) for full documentation.
+
 ## Questions or Issues
 adan.rivas@pfizer.com, or open a GitHub issue
 

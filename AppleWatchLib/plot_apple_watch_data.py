@@ -2,7 +2,9 @@
 Visualizing Apple Watch Health Data w/ Bokeh
 '''
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
+import logging
+import pandas as pd
 from bokeh.io import show
 from bokeh.plotting import figure, output_file, save, reset_output
 from bokeh.models import (
@@ -16,7 +18,8 @@ from bokeh.models import (
 from bokeh.transform import factor_cmap
 from bokeh.palettes import Category20_20
 from read_apple_watch_data import *
-import logging
+
+# create logger object
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -43,8 +46,8 @@ def plot_heart_rate(apple_watch):
     logger.info('Loading and Plotting Heart Rate Data')
     df = apple_watch.load_heart_rate_data()
     df = df[(df['start_timestamp'] > START_DATE) & (df['start_timestamp'] < END_DATE)]
-    df['date'] = map(lambda dt: dt.strftime('%m/%d/%y'), df['start_timestamp'])
-    df['time'] = map(lambda d: d.time(), df['start_timestamp'])
+    df['date'] = list(map(lambda dt: dt.strftime('%m/%d/%y'), df['start_timestamp']))
+    df['time'] = list(map(lambda d: d.time(), df['start_timestamp']))
 
     plot = figure(
         width=800,
@@ -63,7 +66,7 @@ def plot_heart_rate(apple_watch):
     for idx, dt in enumerate(dates):
         sub_df = df[df['date'] == dt][['date', 'time', 'heart_rate']]
         # format time column to be readable
-        sub_df['timestamp'] = map(lambda t: t.strftime('%H:%M:%S'), sub_df['time'])
+        sub_df['timestamp'] = list(map(lambda t: t.strftime('%H:%M:%S'), sub_df['time']))
         source = ColumnDataSource(sub_df)
         plt = plot.circle(x='time',
                   y='heart_rate',
@@ -106,8 +109,8 @@ def plot_heart_rate_variability(apple_watch):
     logger.info('Loading and Plotting Heart Rate Variability Data')
     df = apple_watch.load_heart_rate_variability_data()
     df = df[(df['start_timestamp'] > START_DATE) & (df['start_timestamp'] < END_DATE)]
-    df['date'] = map(lambda d: d.strftime('%m/%d/%y'), df['start_timestamp'])
-    df['time'] = map(lambda d: d.strftime('%H:%M:%S'), df['start_timestamp'])
+    df['date'] = list(map(lambda d: d.strftime('%m/%d/%y'), df['start_timestamp']))
+    df['time'] = list(map(lambda d: d.strftime('%H:%M:%S'), df['start_timestamp']))
     dates = list(df['date'].unique())
 
     # remove instantaneous data, bokeh doesn't not like dictionary format
@@ -160,7 +163,7 @@ def plot_resting_heart_rate(apple_watch):
     logger.info('Loading and Plotting Resting Heart Rate Data')
     df = apple_watch.load_resting_heart_rate_data()
     df = df[(df['start_timestamp'] > START_DATE) & (df['start_timestamp'] < END_DATE)]
-    df['date'] = map(lambda dt: dt.strftime('%m/%d/%y'), df['start_timestamp'])
+    df['date'] = list(map(lambda dt: dt.strftime('%m/%d/%y'), df['start_timestamp']))
 
     source = ColumnDataSource(df)
     plot = figure(
@@ -204,7 +207,7 @@ def plot_walking_heart_rate(apple_watch):
     logger.info('Loading and Plotting Walking/Running Data')
     df = apple_watch.load_walking_heart_rate_data()
     df = df[(df['start_timestamp'] > START_DATE) & (df['start_timestamp'] < END_DATE)]
-    df['date'] = map(lambda dt: dt.strftime('%m/%d/%y'), df['start_timestamp'])
+    df['date'] = list(map(lambda dt: dt.strftime('%m/%d/%y'), df['start_timestamp']))
 
     source = ColumnDataSource(df)
     plot = figure(
@@ -250,8 +253,8 @@ def plot_distance(apple_watch):
     logger.info('Loading and Plotting Distance Walked/Ran Data')
     df = apple_watch.load_distance_data()
     df = df[(df['start_timestamp'] > START_DATE) & (df['start_timestamp'] < END_DATE)]
-    df['date'] = map(lambda d: d.strftime('%m/%d/%y'), df['start_timestamp'])
-    df['hour'] = map(lambda d: int(d.strftime('%H')), df['start_timestamp'])
+    df['date'] = list(map(lambda d: d.strftime('%m/%d/%y'), df['start_timestamp']))
+    df['hour'] = list(map(lambda d: int(d.strftime('%H')), df['start_timestamp']))
 
     # group by hour and date and calculate sum of steps
     hourly_distance = df.groupby(['hour', 'date'])['distance_walk_run'].agg(['sum']).reset_index()
@@ -326,8 +329,8 @@ def plot_basal_energy(apple_watch):
 
     df = apple_watch.load_basal_energy_data()
     df = df[(df['start_timestamp'] > START_DATE) & (df['start_timestamp'] < END_DATE)]
-    df['date'] = map(lambda d: d.strftime('%m/%d/%y'), df['start_timestamp'])
-    df['hour'] = map(lambda d: int(d.strftime('%H')), df['start_timestamp'])
+    df['date'] = list(map(lambda d: d.strftime('%m/%d/%y'), df['start_timestamp']))
+    df['hour'] = list(map(lambda d: int(d.strftime('%H')), df['start_timestamp']))
 
     # group by hour and date and calculate sum of steps
     basal_energy = df.groupby(['hour', 'date'])['energy_burned'].agg(['sum']).reset_index()
@@ -401,9 +404,9 @@ def plot_stand_hour(apple_watch):
 
     df = apple_watch.load_stand_hour_data()
     df = df[(df['start_timestamp'] > START_DATE) & (df['start_timestamp'] < END_DATE)]
-    df['date'] = map(lambda d: d.strftime('%m/%d/%y'), df['start_timestamp'])
-    df['hour'] = map(lambda d: int(d.strftime('%H')), df['start_timestamp'])
-    df['stand_hour'] = map(lambda label: 1 if label == 'Stood' else 0, df['stand_hour'])
+    df['date'] = list(map(lambda d: d.strftime('%m/%d/%y'), df['start_timestamp']))
+    df['hour'] = list(map(lambda d: int(d.strftime('%H')), df['start_timestamp']))
+    df['stand_hour'] = list(map(lambda label: 1 if label == 'Stood' else 0, df['stand_hour']))
     dates = df['date'].unique()
 
     # create heat map of hourly counts grouped by date
@@ -469,8 +472,8 @@ def plot_steps(apple_watch):
     logger.info('Loading and Generating Steps Heat Map')
     df = apple_watch.load_step_data()
     df = df[(df['start_timestamp'] > START_DATE) & (df['start_timestamp'] < END_DATE)]
-    df['date'] = map(lambda d: d.strftime('%m/%d/%y'), df['start_timestamp'])
-    df['hour'] = map(lambda d: int(d.strftime('%H')), df['start_timestamp'])
+    df['date'] = list(map(lambda d: d.strftime('%m/%d/%y'), df['start_timestamp']))
+    df['hour'] = list(map(lambda d: int(d.strftime('%H')), df['start_timestamp']))
 
     # group by hour and date and calculate sum of steps
     step_counts = df.groupby(['hour', 'date'])['steps'].agg(['sum']).reset_index()
@@ -533,11 +536,12 @@ def plot_steps(apple_watch):
     # clear output mode for next plot
     reset_output()
 
-    # save dataframe
+    # save data frame
     df.to_csv('apple_watch_data/step_counts.csv', index=False)
 
 def run(apple_watch, start_date, end_date, show_plots):
     global START_DATE, END_DATE, SHOW_PLOTS
+    SHOW_PLOTS = show_plots
 
     try:
         START_DATE = datetime.strptime(start_date, '%Y-%m-%d %H:%M')
@@ -545,30 +549,46 @@ def run(apple_watch, start_date, end_date, show_plots):
     except ValueError:
         START_DATE = datetime.strptime(start_date, '%m/%d/%y %H:%M')
         END_DATE = datetime.strptime(end_date, '%m/%d/%y %H:%M')
-    except:
-        print 'Unrecognized data format'
-        raise
+    except Exception as e:
+        logger.error('Unrecognized date format...rasining ValueError.')
+        raise ValueError()
 
-    SHOW_PLOTS = show_plots
+    try:
+        plot_heart_rate(apple_watch)
+    except (IndexError, ValueError):
+        logger.warning('Missing heart rate data!')
 
-    plot_heart_rate(apple_watch)
-
-    plot_heart_rate_variability(apple_watch)
+    try:
+        plot_heart_rate_variability(apple_watch)
+    except (IndexError, ValueError):
+        logger.warning('Missing heart rate variability data!')
 
     try:
         plot_resting_heart_rate(apple_watch)
-    except:
-        pass
+    except (IndexError, ValueError):
+        logger.warning('Missing resting heart rate data!')
 
     try:
         plot_walking_heart_rate(apple_watch)
-    except:
-        pass
+    except (IndexError, ValueError):
+        logger.warning('Missing walking heart rate data!')
 
-    plot_distance(apple_watch)
+    try:
+        plot_distance(apple_watch)
+    except (IndexError, ValueError):
+        logger.warning('Missing distance walked data!')
 
-    plot_basal_energy(apple_watch)
+    try:
+        plot_basal_energy(apple_watch)
+    except (IndexError, ValueError):
+        logger.warning('Missing basal energy data!')
 
-    plot_stand_hour(apple_watch)
+    try:
+        plot_stand_hour(apple_watch)
+    except (IndexError, ValueError):
+        logger.warning('Missing stand hour data!')
 
-    plot_steps(apple_watch)
+    try:
+        plot_steps(apple_watch)
+    except (IndexError, ValueError):
+        logger.warning('Missing step count data!')

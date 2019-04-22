@@ -23,22 +23,24 @@ if __name__ == '__main__':
     parser.add_argument('-tag_name', action='store', dest='tag_name', help='XML object to parse from Health data file', default='Record', type=str)
     parser.add_argument('-start_date', action='store', dest='start_date', help='Start date (%Y-%m-%d) to filter health data timestamps')
     parser.add_argument('-end_date', action='store', dest='end_date', help='End date (%Y-%m-%d) to filter health data timestamps')
-    parser.add_argument('-verbose', action='store', dest='verbose', help='Print out plotting status statements', default=False)
-    parser.add_argument('-show_plots', action='store', dest='show_plots', help='Show plots into terminal/IDE', default=True)
+    parser.add_argument('-verbose', action='store_true', dest='verbose', help='Print out plotting status statements', default=False)
+    parser.add_argument('-show_plots', action='store_true', dest='show_plots', help='Show plots into terminal/IDE', default=False)
     parser.add_argument('-save_directory', action='store', dest='save_directory', help='Local path to save plot to', default=None, type=str)
 
     # args = parser.parse_args()
-    args = parser.parse_args(['-xml_file_path', '../../Downloads/sample_export.xml',
+    args = parser.parse_args(['-xml_file_path', '~/Downloads/pfirelab_export.xml',
                               '-start_date', '2018-01-09 13:43',
                               '-end_date', '2018-01-16 16:00',
                               '-source_name', 'Apple Watch',
-                              '-show_plots',
-                              '-save_directory', '../../Downloads/test_apple_watch'])
+                              '-verbose',
+                              '-save_directory', '~/Downloads/pfirelab_test_apple_watch'])
 
     apple_watch = AppleWatchData(args.xml_file_path, args.source_name, args.tag_name)
 
     # create directory to save plots
     if args.save_directory:
+        if args.save_directory.startswith('~'):
+            args.save_directory = os.path.expanduser(args.save_directory)
         if not os.path.exists(args.save_directory):
             os.makedirs(args.save_directory)
         os.chdir(args.save_directory)

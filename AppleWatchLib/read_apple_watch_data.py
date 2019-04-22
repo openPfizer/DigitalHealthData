@@ -1,7 +1,7 @@
 '''
 Extracting Apple Watch Health Data
 '''
-import time
+import os
 from datetime import datetime
 from xml.dom import minidom
 import numpy as np
@@ -20,10 +20,13 @@ class AppleWatchData(object):
         :param source_name: source of health data (i.e. Apple Watch)
         :param tag_name: xml tag to parse data from
         """
-        self.file_path = xml_data_file_path
+        if xml_data_file_path.startswith('~'):
+            self.file_path = os.path.expanduser(xml_data_file_path)
+        else:
+            self.file_path =xml_data_file_path
         self.source_name = source_name
         self.tag_name = tag_name
-        self.xmldoc = minidom.parse(xml_data_file_path)
+        self.xmldoc = minidom.parse(self.file_path)
         self.records = self.xmldoc.getElementsByTagName(self.tag_name)
 
     def parse_tag(self, attribute):
@@ -36,10 +39,9 @@ class AppleWatchData(object):
         record_list = []
         for s in self.records:
             found1 = s.attributes['type'].value == attribute
-            if self.source_name == 'Apple Watch':
-                found2 = u'Apple\xa0Watch' in s.attributes['sourceName'].value
-            else:
-                found2 = self.source_name in s.attributes['sourceName'].value
+            if self.source_name in 'Apple Watch':
+                self.source_name = self.source_name.replace('Apple Watch',  u'Apple\xa0Watch')
+            found2 = self.source_name in s.attributes['sourceName'].value
             # parse the record
             if found1 and found2:
                 record_list.append(s)
@@ -52,14 +54,17 @@ class AppleWatchData(object):
         :param record: xml object with tag name of Record
         :return: Record's start timestamp, end timestamp, and biometric data
         """
-        # Extract start time stamp
+        # Extract start and end timestamps
         start_timestamp_string = record.attributes['startDate'].value
-        start_time = datetime.strptime(start_timestamp_string, '%Y-%m-%d %H:%M:%S -0500')
-        # Extract end time stamp
         end_timestamp_string = record.attributes['endDate'].value
-        end_time = datetime.strptime(end_timestamp_string, '%Y-%m-%d %H:%M:%S -0500')
+        try:
+            start_time = datetime.strptime(start_timestamp_string, '%Y-%m-%d %H:%M:%S -0500')
+            end_time = datetime.strptime(end_timestamp_string, '%Y-%m-%d %H:%M:%S -0500')
+        except ValueError:
+            start_time = datetime.strptime(start_timestamp_string, '%Y-%m-%d %H:%M:%S -0400')
+            end_time = datetime.strptime(end_timestamp_string, '%Y-%m-%d %H:%M:%S -0400')
 
-        # Extract biometric
+        # Extract biometric data
         try:
             # convert to float for numerical values
             biometric = float(record.attributes['value'].value)
@@ -76,7 +81,7 @@ class AppleWatchData(object):
         :return: array of timestamps and data values returned by parse_record()
         """
         # vectorize extraction record values
-        apple_data = map(lambda record: self.parse_record(record), record_list)
+        apple_data = list(map(lambda record: self.parse_record(record), record_list))
         apple_array = np.array(apple_data)
 
         return apple_array

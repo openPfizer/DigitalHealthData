@@ -31,6 +31,9 @@ Note: Dates must be of the following format ('%Y-%m-%d %H:%M', '%m/%d/%y %H:%M')
 
 When providing the source name (same as apple watch name listed in Watch app on iPhone), be mindful of special, non-ascii code characters such as apostraphes. Apple Watch name can be changed from within the Watch app.
 
+## Documentation
+Visit [here](https://openpfizer.github.io/DigitalHealthData/) for full documentation.
+
 ## Questions or Issues
 adan.rivas@pfizer.com, or open a GitHub issue
 
